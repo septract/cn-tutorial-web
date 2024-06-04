@@ -30,7 +30,7 @@ jobs:
         run: rm -rf build/*
 
       - name: Build the tutorial
-        run: make build/tutorial.html
+        run: make 
       
       - name: List build directory contents
         run: ls -al ./build
