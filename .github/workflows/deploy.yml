@@ -1,4 +1,4 @@
-name: Deploy tutorial.html to GitHub Pages
+name: Deploy the CN tutorial to GitHub Pages
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7 
+          ruby-version: '2.7' 
 
       - name: Install AsciiDoctor
         run: gem install asciidoctor
