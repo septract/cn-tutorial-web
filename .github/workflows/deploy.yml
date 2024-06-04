@@ -1,0 +1,42 @@
+name: Deploy tutorial.html to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7 
+
+      - name: Install AsciiDoctor
+        run: gem install asciidoctor
+
+      - name: Clean previous builds
+        run: rm -rf build/*
+
+      - name: Build the tutorial
+        run: make build/tutorial.html
+      
+      - name: List build directory contents
+        run: ls -al ./build
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          build_dir: ./build/ 
