@@ -40,20 +40,19 @@ jobs:
         with:
           path: ./build/
 
-  deploy:
-    needs: build
+  # deploy:
+  #   needs: build
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v1
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          # Ensure the following permission is added to allow the deployment
-          token: ${{ secrets.GITHUB_TOKEN }}
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
 
 
