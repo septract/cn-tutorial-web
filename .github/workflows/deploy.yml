@@ -36,10 +36,9 @@ jobs:
         run: ls -al ./build
 
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: ./build/tutorial.html 
-
+          path: ./build/
 
   deploy:
     needs: build
@@ -53,4 +52,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Ensure the following permission is added to allow the deployment
+          token: ${{ secrets.GITHUB_TOKEN }}
+
 
